@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using UserMgmtApi.Middleware;
 
 namespace UserMgmtApi
@@ -25,7 +26,12 @@ namespace UserMgmtApi
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                // Added custom operation filter to add the API key header as a required parameter
+                options.OperationFilter<ApiKeyHeaderOperationFilter>();
+            });
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", builder =>
@@ -51,7 +57,6 @@ namespace UserMgmtApi
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
-            //app.UseMiddleware<AuthenticationHandler>();
             app.UseAuthentication();
             app.UseAuthorization();
             
