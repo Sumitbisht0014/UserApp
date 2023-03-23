@@ -7,7 +7,7 @@ React application will get authenticated based on APIKey which will be passed fr
 If you want to change the apiKey, you can change in above mentioned file in react and same should be added in appSettings.json file of dotnet core project.
 
 
-#Installation
+# Installation
 A step-by-step guide on how to install and set up the project.
 To load react dependencies either goto React app (user-app) and run `npm install` command
         or
