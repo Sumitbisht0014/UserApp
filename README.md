@@ -14,3 +14,4 @@ To load react dependencies either goto React app (user-app) and run `npm install
 Open solution file in Visual Studio and configure solution for multiple project at startup. Run the application. Npm install and all related dependencies will added automatically.
 
 Note: Swagger doc is exposed in dotnet core which will help with more API specifications.
+Note: Make sure database is created and migration is added to it. Use `Update-Database` command to apply migration.
